@@ -240,6 +240,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e4dc7134a13d4f70a8241641ac4ccc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1431918222}
+  detectionDistance: 20
+  ground:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &569829956
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +257,7 @@ GameObject:
   - component: {fileID: 569829959}
   - component: {fileID: 569829958}
   - component: {fileID: 569829957}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +346,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1111, y: 1, z: 111}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -551,6 +556,11 @@ MonoBehaviour:
 --- !u!1 &1431918217 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6188160256610247873, guid: c5296ca2d7bdc439ea131169364668ee, type: 3}
+  m_PrefabInstance: {fileID: 7526550015967740601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1431918222 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7034027088163374814, guid: c5296ca2d7bdc439ea131169364668ee, type: 3}
   m_PrefabInstance: {fileID: 7526550015967740601}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7526550015967740601
