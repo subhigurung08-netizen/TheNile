@@ -158,9 +158,9 @@ public class NPCController : MonoBehaviour
         Debug.Log("State: Enchantment");
         // if(player!=null && target != null)
         // {
-        if(transform.localScale.x == 1)
+        if(transform.localScale.x == 3f)
         {
-            Vector3 scaleChange = new Vector3(.2f, 2f, 2f);
+            Vector3 scaleChange = new Vector3(.5f, 2f, 2f);
             transform.localScale = scaleChange;
         }
         // }
