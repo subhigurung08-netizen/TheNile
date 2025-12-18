@@ -97,7 +97,7 @@ public class NPCController : MonoBehaviour
             {
             Debug.Log("State: Roam");
             
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.localScale = new Vector3(3f, 2f, 2f);
             Vector3 move2 = new Vector3(Random.Range(-100, 100) * 1f, 0f, Random.Range(-100, 100) * 1f);
             transform.position += move2.normalized;
             Vector3 dir = player.transform.position - transform.position;
@@ -114,7 +114,7 @@ public class NPCController : MonoBehaviour
             if(!isCaptured)
             {
             Debug.Log("State: Chase");
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.localScale = new Vector3(3f, 2f, 2f);
             Vector3 dir = player.transform.position - transform.position;
             dir.y = 0f;
             if(dir.magnitude < 2f)
@@ -122,7 +122,7 @@ public class NPCController : MonoBehaviour
                 Enchantment();
             }
             Vector3 move = new Vector3(dir.x, dir.y, dir.z);
-            transform.position += move.normalized;
+            transform.position += move.normalized ;
         // {
         //     SetNewPatrolTarget();
         // }
@@ -182,7 +182,8 @@ public class NPCController : MonoBehaviour
         Debug.Log("State: Capture");
         
         // StartCoroutine(LoadCapture());
-        Debug.Log("State: Capture");
+        Vector3 scaleChange = new Vector3(.2f, 4f, 2f);
+        transform.localScale = scaleChange;
         Destroy(target, 2f);
     } 
     
