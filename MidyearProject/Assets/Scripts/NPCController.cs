@@ -92,18 +92,19 @@ public class NPCController : MonoBehaviour
 
         void Roam()
         {
-        
             if(!isCaptured)
             {
-            Debug.Log("State: Roam");
+                Debug.Log("State: Roam");
             
-            transform.localScale = new Vector3(3f, 2f, 2f);
-            Vector3 move2 = new Vector3(Random.Range(-100, 100) * 1f, 0f, Random.Range(-100, 100) * 1f);
-            transform.position += move2.normalized;
-            Vector3 dir = player.transform.position - transform.position;
-            if(dir.magnitude< detectionDistance){
-                Chase();
-            }
+                transform.localScale = new Vector3(3f, 2f, 2f);
+                Vector3 move2 = new Vector3(Random.Range(-100, 100) * 1f, 0f, Random.Range(-100, 100) * 1f);
+                transform.position += move2.normalized;
+                Vector3 dir = player.transform.position - transform.position;
+
+                if(dir.magnitude< detectionDistance)
+                {
+                    Chase();
+                }
             // }
 
             }
