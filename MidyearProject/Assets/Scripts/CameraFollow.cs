@@ -19,7 +19,7 @@ public class CameraFollow : MonoBehaviour
     {
         if(target!=null)
         {
-            Vector3 movement = new Vector3(target.transform.position.x, target.transform.position.y + offsetY, target.transform.position.z + offsetZ);
+            Vector3 movement = new Vector3(target.transform.position.x, offsetY, target.transform.position.z + offsetZ);
             transform.position = movement;
         }
     }
