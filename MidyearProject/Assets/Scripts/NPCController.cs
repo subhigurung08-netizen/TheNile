@@ -18,13 +18,15 @@ public class NPCController : MonoBehaviour
     public LayerMask ground;
     private int enchantmentTime;
 
-    private Stack<Vector3> PlayerActions;
+    // private List<Vector2Int> PlayerActionsX;
+    // private List<Vector2Int> PlayerActionsZ;
    
     // Start is called before the first frame update
  
     void Start()
     {
-        PlayerActions = new Stack<Vector3>();
+        // PlayerActionsX = new List<Vector2Int>();
+        // PlayerActionsZ = new List<Vector2Int>();
         
     }
 
@@ -45,10 +47,36 @@ public class NPCController : MonoBehaviour
             if(transform.localScale == new Vector3(.2f, 3f, 2f))
             {
                 enchantmentTime++;
-                // if(directionToPlayer.x > 0)
+                // switch(directionToPlayer.normalized.x)
                 // {
-                //     PlayerActions.push(directionToPlayer);
+                //     case -1:
+                //         PlayerActionsX.Add(new Vector2Int(-1, 0));
+                //         break;
+
+                //     case 1:
+                //         PlayerActionsX.Add(new Vector2Int(1,0));
+                //         break;
+
+
                 // }
+
+                // switch(directionToPlayer.normalized.z)
+                // {
+                //     case -1:
+                //         PlayerActionsZ.Add(new Vector2Int(0, -1));
+                //         break;
+
+                //     case 1:
+                //         PlayerActionsZ.Add(new Vector2Int(0, 1));
+                //         break;
+
+
+                // }
+
+                if(directionToPlayer.x > 0)
+                {
+                    PlayerActions.Add(directionToPlayer);
+                }
                 if(enchantmentTime>200)
                 {
                     Capture();
