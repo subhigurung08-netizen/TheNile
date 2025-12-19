@@ -73,10 +73,10 @@ public class NPCController : MonoBehaviour
 
                 // }
 
-                if(directionToPlayer.x > 0)
-                {
-                    PlayerActions.Add(directionToPlayer);
-                }
+                // if(directionToPlayer.x > 0)
+                // {
+                //     PlayerActions.Add(directionToPlayer);
+                // }
                 if(enchantmentTime>200)
                 {
                     Capture();
