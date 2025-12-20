@@ -1,5 +1,3 @@
-
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +7,8 @@ public class NPCController : MonoBehaviour
 {
     private List<string> states;
     public float roamSpeed;
+
+    public float chaseSpeed;
     public Transform player;
     public GameObject target;
     private bool isCaptured = false;
@@ -121,7 +121,7 @@ public class NPCController : MonoBehaviour
             
             transform.localScale = new Vector3(2f, 2f, 2f);
             Vector3 move2 = new Vector3(Random.Range(-100, 100) * 1f, 0f, Random.Range(-100, 100) * 1f);
-            transform.position += move2.normalized;
+            transform.position += move2.normalized * roamSpeed * Time.deltaTime;
             // Vector3 dir = player.transform.position - transform.position;
             if(dir.magnitude< detectionDistance)
             {
@@ -145,7 +145,7 @@ public class NPCController : MonoBehaviour
                 Enchantment();
             }
             Vector3 move = new Vector3(dir.x, dir.y, dir.z);
-            transform.position += move.normalized ;
+            transform.position += move.normalized * chaseSpeed * Time.deltaTime;
         // {
         //     SetNewPatrolTarget();
         // }
