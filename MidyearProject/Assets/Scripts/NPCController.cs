@@ -34,7 +34,7 @@ public class NPCController : MonoBehaviour
 
     void Update()
     {
-        
+        int countRoam=0;
         if(player !=null && target != null)
         {
         
@@ -87,8 +87,10 @@ public class NPCController : MonoBehaviour
             {
                 if (Physics.Raycast(ray, out hit, detectionDistance))
                 {
+                    countRoam = 0;
                     if (hit.transform == player)
-                    {
+                    {   
+
                         // playerInSight = true;
                     
                         if(hit.distance < 2f)
@@ -101,7 +103,8 @@ public class NPCController : MonoBehaviour
                 
                 else
                 {
-                    Roam(directionToPlayer);
+                    countRoam++;
+                    Roam(directionToPlayer, countRoam);
                 }
                 Debug.DrawRay(ray.origin, ray.direction * detectionDistance, Color.red);
             }
@@ -112,17 +115,28 @@ public class NPCController : MonoBehaviour
     
     
 
-        void Roam(Vector3 dir)
+        void Roam(Vector3 dir, int count)
         {
-        
+            
             if(!isCaptured)
             {
+                
             Debug.Log("State: Roam");
             
             transform.localScale = new Vector3(2f, 2f, 2f);
+                if(count>10)
+                {
             Vector3 move2 = new Vector3(Random.Range(-100, 100) * 1f, 0f, Random.Range(-100, 100) * 1f);
             transform.position += move2.normalized * roamSpeed * Time.deltaTime;
             // Vector3 dir = player.transform.position - transform.position;
+                }
+
+                else
+                {
+                    float addX = roamSpeed * Time.deltaTime;
+                    float addZ = roamSpeed * Time.deltaTime;
+                    transform.position = new Vector3(transform.position.x + addX, 0f, transform.position.z + addZ);
+                }
             if(dir.magnitude< detectionDistance)
             {
                 Chase(dir);
