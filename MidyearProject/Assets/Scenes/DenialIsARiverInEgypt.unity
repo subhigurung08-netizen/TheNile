@@ -351,7 +351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &453522613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,8 +364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc35a43710004ce1a8cc74a40cc5394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 30
-  height: 30
+  width: 10
+  height: 10
   wallSize: 10
   walls: []
   goal: {fileID: 1901946494}
@@ -994,6 +994,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1431918231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431918217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01c619fbff4a4783b29d4564bd20aec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
 --- !u!1 &1901946494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,13 +1313,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6558208982117075438, guid: c5296ca2d7bdc439ea131169364668ee, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6188160256610247873, guid: c5296ca2d7bdc439ea131169364668ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1431918227}
+    - targetCorrespondingSourceObject: {fileID: 6188160256610247873, guid: c5296ca2d7bdc439ea131169364668ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1431918231}
   m_SourcePrefab: {fileID: 100100000, guid: c5296ca2d7bdc439ea131169364668ee, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
