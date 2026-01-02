@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour
 {
-    public int width;
-    public int height;
-    public float wallSize; 
-    public  bool [,] visited;
-    public List<GameObject> walls;
-    public GameObject goal;
+    [SerializeField] private int width;
+    [SerializeField] private int height;
+    [SerializeField] private float wallHeight; 
+    [SerializeField] private float cellSize; 
+    [SerializeField] private  bool [,] visited;
+    [SerializeField] private List<GameObject> walls;
+    [SerializeField] private GameObject goal;
    
 
     // Start is called before the first frame update
@@ -54,22 +55,28 @@ public class MazeGenerator : MonoBehaviour
     {
         if(col!=0)
         {
-        GameObject cube1 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        Vector3 positionNS = new Vector3(row+ .5f, 0, col);
-        cube1.transform.position = positionNS;
-        Vector3 sizeChange1 = new Vector3(.2f, wallSize, 1f);
-        cube1.transform.localScale = sizeChange1;
-        walls.Add(cube1);
+            GameObject cube1 = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            Vector3 positionNS = new Vector3(row*cellSize + cellSize/2, 0, col*cellSize);
+            cube1.transform.position = positionNS;
+            Vector3 sizeChange1 = new Vector3(.2f, wallHeight, cellSize);
+            cube1.transform.localScale = sizeChange1;
+            Vector3 changePosition = new Vector3(cube1.transform.position.x, cube1.transform.position.y + wallHeight/2, cube1.transform.position.z);
+            cube1.transform.position = changePosition;
+            walls.Add(cube1);
         }
 
         if(row!=0)
         {
-        GameObject cube2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        Vector3 positionWE = new Vector3(row, 0, col + .5f);
-        cube2.transform.position = positionWE;
-        Vector3 sizeChange2 = new Vector3(1f, wallSize, .2f);
-        cube2.transform.localScale = sizeChange2;
-        walls.Add(cube2);
+            GameObject cube2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            // Vector3 positionWE = new Vector3(row, 0, col + .5f);
+            Vector3 positionWE = new Vector3(row * cellSize, 0, col*cellSize + cellSize/2);
+            cube2.transform.position = positionWE;
+            // Vector3 sizeChange2 = new Vector3(1f, wallHeight, .2f);
+            Vector3 sizeChange2 = new Vector3(cellSize, wallHeight, .2f);
+            cube2.transform.localScale = sizeChange2;
+            Vector3 changePosition = new Vector3(cube2.transform.position.x, cube2.transform.position.y + wallHeight/2, cube2.transform.position.z);
+            cube2.transform.position = changePosition;
+            walls.Add(cube2);
         }
     }
 
@@ -78,12 +85,12 @@ public class MazeGenerator : MonoBehaviour
         visited[x, z] = true;
         List<Vector2Int> neighbor = NeighborCheck(x, z);
         if(neighbor.Count==0){
-            goal.transform.position = new Vector3(x, 0, z);
+            goal.transform.position = new Vector3(x * cellSize, 0, z * cellSize);
             yield break;
         }
         int index = Random.Range(0, neighbor.Count);
         Vector2Int chosen = neighbor[index];
-        RemoveWall(x, z, chosen);
+        RemoveWall(x * cellSize, z * cellSize, chosen);
         yield return new WaitForSeconds(0.05f);
         
         StartCoroutine(Generate(x + chosen.x, z + chosen.y));
@@ -117,33 +124,38 @@ public class MazeGenerator : MonoBehaviour
         return neighbors;
     }
     
-    void RemoveWall(int xvar, int zvar, Vector2Int chosen)
+    void RemoveWall(float xvar, float zvar, Vector2Int chosen)
     {
         Vector3 target = Vector3.zero;
         // int midpointX= 0;
         // int midpointZ =0;
         if(chosen.x == 1 && chosen.y == 0)
         {
-            target = new Vector3(xvar + .5f, 0, zvar);
+            // target = new Vector3(xvar + .5f, 0, zvar);
+            target = new Vector3(xvar + cellSize/2, wallHeight/2, zvar);
         }
 
         else if(chosen.x== -1 && chosen.y == 0)
         {
-            target = new Vector3(xvar - .5f, 0, zvar);
+            // target = new Vector3(xvar - .5f, 0, zvar);
+            target = new Vector3(xvar - cellSize/2, wallHeight/2, zvar);
         }
 
         else if(chosen.x == 0 && chosen.y == 1)
         {
-            target = new Vector3(xvar, 0, zvar + .5f);
+            // target = new Vector3(xvar, 0, zvar + .5f);
+            target = new Vector3(xvar, wallHeight/2, zvar + cellSize/2);
         }
 
         else if(chosen.x == 0 && chosen.y == -1)
         {
-            target = new Vector3(xvar, 0, zvar - .5f);
+            // target = new Vector3(xvar, 0, zvar - .5f);
+            target = new Vector3(xvar, wallHeight/2, zvar - cellSize/2);
         }
         
         for(int i = 0; i<walls.Count; i++){
-            if(walls[i] != null){
+            if(walls[i] != null)
+            {
                 if(Vector3.Distance(walls[i].transform.position, target) < .01f)
                 {
                     Destroy(walls[i]);
