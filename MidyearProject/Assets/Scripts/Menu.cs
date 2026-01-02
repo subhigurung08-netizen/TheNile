@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MenuAndSpawner : MonoBehaviour
 {
-    public GameObject[] spawned;
+    [SerializeField] private GameObject[] spawned;
 
     // Called when we click the "Play" button.
     public void OnPlayButton()

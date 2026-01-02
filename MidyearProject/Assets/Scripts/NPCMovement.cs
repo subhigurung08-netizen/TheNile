@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class NPCMovement : MonoBehaviour
 {
-    public float moveSpeed = 3f;
-    public float waypointThreshold = 0.05f;
+    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float waypointThreshold = 0.05f;
 
     private List<Vector3> worldPath;
     private int currentIndex = 0;
