@@ -246,7 +246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da7ead35eba74a118f968477e540b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeGenerator: {fileID: 2060051795}
 --- !u!136 &427629116
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -370,6 +369,8 @@ MonoBehaviour:
   cellSize: 5
   walls: []
   goal: {fileID: 1901946494}
+  stairsX: 2
+  stairsZ: 1
 --- !u!4 &453522614
 Transform:
   m_ObjectHideFlags: 0
@@ -747,7 +748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da7ead35eba74a118f968477e540b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeGenerator: {fileID: 2060051795}
 --- !u!4 &833141914
 Transform:
   m_ObjectHideFlags: 0
@@ -983,11 +983,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 546886562f42540c8914751489e3be83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeGenerator: {fileID: 2060051795}
-  pathfinder: {fileID: 0}
-  npcPrefab: {fileID: 0}
-  goalPrefab: {fileID: 0}
-  pathTilePrefab: {fileID: 0}
 --- !u!4 &1384012410
 Transform:
   m_ObjectHideFlags: 0
@@ -1174,13 +1169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff437d4eb92049aebfe3c3a3a81ba79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 10
-  height: 10
-  cellSize: 2
-  floorPrefab: {fileID: 9097222611487515513, guid: e133b1b0f042c45f19604a0772f98062, type: 3}
-  wallPrefab: {fileID: 7541483056974230473, guid: a5705517625a448d183dbf5c14a4b0e2, type: 3}
-  startCell: {x: 0, y: 0}
-  goalCell: {x: 0, y: 0}
 --- !u!4 &2060051796
 Transform:
   m_ObjectHideFlags: 0
