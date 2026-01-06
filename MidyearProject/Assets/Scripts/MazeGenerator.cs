@@ -88,6 +88,8 @@ public class MazeGenerator : MonoBehaviour
         {
             // Vector3 positionWE = new Vector3(row * cellSize, 0, col*cellSize + cellSize/2);
             Vector3 positionWE = new Vector3(cellSize * (baseWidth - width)/2 + row * cellSize, 0, cellSize * (baseHeight - height)/2 + col*cellSize + cellSize/2);
+            // put a code here to pick wall randomly from an list of different wall prefabs
+            // wall = some random stuff
             GameObject cube2 = Instantiate(wall, positionWE, Quaternion.identity);
             // GameObject cube2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
             // Vector3 positionWE = new Vector3(row, 0, col + .5f);
