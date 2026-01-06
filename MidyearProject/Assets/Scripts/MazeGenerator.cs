@@ -14,12 +14,16 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] private float cellSize; 
     [SerializeField] private List<GameObject> walls;
     [SerializeField] private GameObject wall;
+    [SerializeField] private GameObject floor;
     [SerializeField] private  bool [,] visited;
     // [SerializeField] private Stack<int> visitedX = new Stack<int>();
     // [SerializeField] private Stack<int> visitedZ = new Stack<int>();
-    [SerializeField] private GameObject goal;
-    [SerializeField] private float stairsX;
-    [SerializeField] private float stairsZ;
+    // [SerializeField] private GameObject goal;
+    [SerializeField] private int entryStairsX;
+    [SerializeField] private int entryStairsZ;
+
+    [SerializeField] private int exitStairsX;
+    [SerializeField] private int exitStairsZ;
 
 
     // Start is called before the first frame update
@@ -34,10 +38,10 @@ public class MazeGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(Input.GetKeyDown(KeyCode.Space)) {
-            ClearMaze();
-            GenerateMaze();
-       }
+    //    if(Input.GetKeyDown(KeyCode.Space)) {
+    //         ClearMaze();
+    //         GenerateMaze();
+    //    }
     }
 
     void GenerateMaze()
@@ -57,7 +61,7 @@ public class MazeGenerator : MonoBehaviour
                 
             }
         }
-        StartCoroutine(Generate(0 , 0));
+        StartCoroutine(Generate(entryStairsX + floorNumber, entryStairsZ + floorNumber));
     }
     
     void CreateWall(int row, int col)
@@ -69,8 +73,8 @@ public class MazeGenerator : MonoBehaviour
             // cube1.transform.position = positionNS;
             Vector3 sizeChange1 = new Vector3(.2f, wallHeight, cellSize);
             cube1.transform.localScale = sizeChange1;
-            Vector3 changePosition = new Vector3(cube1.transform.position.x, cube1.transform.position.y+ wallHeight * floorNumber + wallHeight/2, cube1.transform.position.z);
-            cube1.transform.position = changePosition;
+            Vector3 changePosition1 = new Vector3(cube1.transform.position.x, cube1.transform.position.y+ wallHeight * floorNumber + wallHeight/2, cube1.transform.position.z);
+            cube1.transform.position = changePosition1;
             walls.Add(cube1);
         }
 
@@ -81,14 +85,34 @@ public class MazeGenerator : MonoBehaviour
             GameObject cube2 = Instantiate(wall, positionWE, Quaternion.identity);
             // GameObject cube2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
             // Vector3 positionWE = new Vector3(row, 0, col + .5f);
-            
-            cube2.transform.position = positionWE;
+            // cube2.transform.position = positionWE;
             // Vector3 sizeChange2 = new Vector3(1f, wallHeight, .2f);
             Vector3 sizeChange2 = new Vector3(cellSize, wallHeight, .2f);
             cube2.transform.localScale = sizeChange2;
-            Vector3 changePosition = new Vector3(cube2.transform.position.x, cube2.transform.position.y + wallHeight * floorNumber + wallHeight/2, cube2.transform.position.z);
-            cube2.transform.position = changePosition;
+            Vector3 changePosition2 = new Vector3(cube2.transform.position.x, cube2.transform.position.y + wallHeight * floorNumber + wallHeight/2, cube2.transform.position.z);
+            cube2.transform.position = changePosition2;
             walls.Add(cube2);
+        }
+        // if(row == entryStairsX && col == entryStairsZ && floorNumber!=0)
+        // {
+        //     Vector3 positionFloor = new Vector3(cellSize * (baseWidth - width)/2, 0, cellSize * (baseHeight - height)/2 + col*cellSize);
+        //     GameObject cube3 = Instantiate(floor, positionFloor, Quaternion.identity);
+        //     Vector3 sizeChange3 = new Vector3(cellSize, .2f, cellSize);
+        //     cube3.transform.localScale = sizeChange3;
+        //     Vector3 changePosition3 = new Vector3(cube3.transform.position.x, cube3.transform.position.y + wallHeight * floorNumber - wallHeight/2, cube3.transform.position.z);
+        //     cube3.transform.position = changePosition3;
+        // }
+
+        // else 
+        if((row != entryStairsX || col != entryStairsZ) && floorNumber!=0)
+        {
+            Vector3 positionFloor = new Vector3(cellSize * (baseWidth - width)/2 + row * cellSize, 0, cellSize * (baseHeight - height)/2 + col*cellSize);
+            GameObject cube3 = Instantiate(floor, positionFloor, Quaternion.identity);
+            Vector3 sizeChange3 = new Vector3(cellSize, .2f, cellSize);
+            cube3.transform.localScale = sizeChange3;
+            Vector3 changePosition3 = new Vector3(cube3.transform.position.x, cube3.transform.position.y + wallHeight * floorNumber, cube3.transform.position.z);
+            cube3.transform.position = changePosition3;
+
         }
     }
 
@@ -99,7 +123,7 @@ public class MazeGenerator : MonoBehaviour
         // visitedZ.Push(z);
         Debug.Log("x: " + x + " z: " + z + " floor: " + floorNumber);
 
-        if(x == stairsX && z == stairsZ)
+        if(x == exitStairsX+floorNumber && z == exitStairsZ + floorNumber)
         {
             // goal.transform.position = new Vector3(x * cellSize, 0, z * cellSize);
             Debug.Log("sup");
@@ -138,6 +162,7 @@ public class MazeGenerator : MonoBehaviour
             int index = Random.Range(0, neighbor.Count);
             Vector2Int chosen = neighbor[index];
             RemoveWall(x * cellSize, z * cellSize, chosen);
+            Debug.Log("wall removed: " + " x: " + x + ", z: " + z);
             yield return new WaitForSeconds(0.05f);
             StartCoroutine(Generate(x + chosen.x, z + chosen.y));
         }
@@ -147,7 +172,7 @@ public class MazeGenerator : MonoBehaviour
     private List<Vector2Int> NeighborCheck(int x, int z)
     {
         List<Vector2Int> neighbors = new List<Vector2Int>();
-        
+        Debug.Log("Checking Neighbors for: " + "x: " + x + ", z: " + z);
         if(z!= height-1 && visited[x, z+1]==false)
         {
             neighbors.Add(new Vector2Int(0, 1));

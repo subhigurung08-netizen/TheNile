@@ -6,17 +6,23 @@ using UnityEngine;
 public class NPCController : MonoBehaviour
 {
     private List<string> states;
-    public float roamSpeed;
-
-    public float chaseSpeed;
-    public Transform player;
-    public GameObject target;
+    [SerializeField] private float roamSpeed;
+    [SerializeField] private float chaseSpeed;
+    [SerializeField] private Transform player;
+    [SerializeField] private GameObject target;
     private bool isCaptured = false;
+    [SerializeField] private float detectionDistance = 20f;
+    [SerializeField] private float minX;
+    [SerializeField] private float minZ;
+    [SerializeField] private float maxX;
+    [SerializeField] private float maxZ;
+    [SerializeField] private float positionY;
 
-    public float detectionDistance = 20f;
+    [SerializeField] private LayerMask ground;
+    [SerializeField] private int enchantmentTime;
 
-    public LayerMask ground;
-    private int enchantmentTime;
+    private float countRoam = 0f;
+    
 
     // private List<Vector2Int> PlayerActionsX;
     // private List<Vector2Int> PlayerActionsZ;
@@ -34,19 +40,36 @@ public class NPCController : MonoBehaviour
 
     void Update()
     {
-        int countRoam=0;
+        
+        
         if(player !=null && target != null)
         {
-        
+            
+            // float x = transform.position.x;
+            // float z = transform.position.z;
             Vector3 directionToPlayer = player.transform.position - transform.position;
             float distanceToPlayer = directionToPlayer.magnitude;
-
-            Ray ray = new Ray(transform.position, directionToPlayer.normalized);
-            RaycastHit hit;
-            bool playerInSight = false;
-            if(transform.localScale == new Vector3(.2f, 3f, 2f))
+            if(transform.position.x<minX || transform.position.x>maxX)
             {
-                enchantmentTime++;
+                // float newX = Mathf.Clamp(transform.position.x, minX, maxX);
+                float newX = Random.Range(minX+1, maxX-1);
+                transform.position = new Vector3(newX, positionY, transform.position.z);
+            }
+            if(transform.position.z<minZ || transform.position.z>maxZ)
+            {
+                // float newZ = Mathf.Clamp(transform.position.z, minZ, maxZ);
+                float newZ = Random.Range(minZ+1, maxZ-1);
+                transform.position = new Vector3(transform.position.x, positionY, newZ);
+            }
+            if(Mathf.Abs(player.transform.position.y - transform.position.y) < 1f)
+            {
+                Ray ray = new Ray(transform.position, directionToPlayer.normalized);
+                RaycastHit hit;
+                bool playerInSight = false;
+
+                if(transform.localScale == new Vector3(.2f, 3f, 2f))
+                {
+                    enchantmentTime++;
                 // switch(directionToPlayer.normalized.x)
                 // {
                 //     case -1:
@@ -77,36 +100,45 @@ public class NPCController : MonoBehaviour
                 // {
                 //     PlayerActions.Add(directionToPlayer);
                 // }
-                if(enchantmentTime>200)
-                {
-                    Capture();
-                }
+                    if(enchantmentTime>200)
+                    {
+                        Capture();
+                    }
+                
             
-            }
-            if(player!=null && target != null)
-            {
-                if (Physics.Raycast(ray, out hit, detectionDistance))
+                }
+                if(player!=null && target != null)
                 {
-                    countRoam = 0;
-                    if (hit.transform == player)
-                    {   
+                    
+                    if (Physics.Raycast(ray, out hit, detectionDistance) && Mathf.Abs(player.transform.position.y - transform.position.y) < 1f)
+                    {
+                        countRoam = 0;
+                        if (hit.transform == player)
+                        {   
 
                         // playerInSight = true;
                     
-                        if(hit.distance < 2f)
-                        {
-                            Enchantment();
+                            if(hit.distance < 2f)
+                            {
+                                Enchantment();
+                            }
+                            Chase(directionToPlayer);
                         }
-                        Chase(directionToPlayer);
                     }
-                }
                 
-                else
-                {
-                    countRoam++;
-                    Roam(directionToPlayer, countRoam);
-                }
+                    else
+                    {
+                        countRoam++;
+                        Roam(directionToPlayer);
+                    }
                 Debug.DrawRay(ray.origin, ray.direction * detectionDistance, Color.red);
+                }
+            }
+
+            else
+            {
+                countRoam++;
+                Roam(directionToPlayer);
             }
         }
     }
@@ -115,19 +147,21 @@ public class NPCController : MonoBehaviour
     
     
 
-        void Roam(Vector3 dir, int count)
+        void Roam(Vector3 dir)
         {
             
             if(!isCaptured)
             {
                 
-            Debug.Log("State: Roam");
+                Debug.Log("State: Roam");
             
-            transform.localScale = new Vector3(2f, 2f, 2f);
-                if(count>10)
+                transform.localScale = new Vector3(2f, 2f, 2f);
+                if(countRoam>100)
                 {
-            Vector3 move2 = new Vector3(Random.Range(-100, 100) * 1f, 0f, Random.Range(-100, 100) * 1f);
-            transform.position += move2.normalized * roamSpeed * Time.deltaTime;
+                    countRoam=0;
+                    Vector3 move2 = new Vector3(Random.Range(-10, 10) * 1f, positionY, Random.Range(-10, 10) * 1f);
+                    // transform.position += move2.normalized * roamSpeed * Time.deltaTime;
+                    transform.position = new Vector3(move2.normalized.x * roamSpeed * Time.deltaTime, positionY, move2.normalized.z * roamSpeed * Time.deltaTime);
             // Vector3 dir = player.transform.position - transform.position;
                 }
 
@@ -135,7 +169,7 @@ public class NPCController : MonoBehaviour
                 {
                     float addX = roamSpeed * Time.deltaTime;
                     float addZ = roamSpeed * Time.deltaTime;
-                    transform.position = new Vector3(transform.position.x + addX, 0f, transform.position.z + addZ);
+                    transform.position = new Vector3(transform.position.x + addX, positionY, transform.position.z + addZ);
                 }
             if(dir.magnitude< detectionDistance)
             {
@@ -150,16 +184,16 @@ public class NPCController : MonoBehaviour
         {
             if(!isCaptured)
             {
-            Debug.Log("State: Chase");
-            transform.localScale = new Vector3(3f, 2f, 2f);
+                Debug.Log("State: Chase");
+                transform.localScale = new Vector3(3f, 2f, 2f);
             // Vector3 dir = player.transform.position - transform.position;
-            dir.y = 0f;
-            if(dir.magnitude < 10f)
-            {
-                Enchantment();
-            }
-            Vector3 move = new Vector3(dir.x, dir.y, dir.z);
-            transform.position += move.normalized * chaseSpeed * Time.deltaTime;
+                dir.y = 0f;
+                if(dir.magnitude < 10f)
+                {
+                    Enchantment();
+                }
+                Vector3 move = new Vector3(dir.x, dir.y, dir.z);
+                transform.position += move.normalized * chaseSpeed * Time.deltaTime;
         // {
         //     SetNewPatrolTarget();
         // }
@@ -191,13 +225,13 @@ public class NPCController : MonoBehaviour
         if(!isCaptured)
         {
       
-        Debug.Log("State: Enchantment");
+            Debug.Log("State: Enchantment");
         
-        if(transform.localScale.x == 3f)
-        {
-            Vector3 scaleChange = new Vector3(.2f, 3f, 2f);
-            transform.localScale = scaleChange;
-        }
+            if(transform.localScale.x == 3f)
+            {
+                Vector3 scaleChange = new Vector3(.2f, 3f, 2f);
+                transform.localScale = scaleChange;
+            }
         // }
         
         }
