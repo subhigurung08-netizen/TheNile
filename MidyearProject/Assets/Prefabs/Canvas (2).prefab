@@ -1080,15 +1080,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Objective:
 
-    you do not belong here. you must escape the great pyramid,
-    which has been reconstructed into a maze to trap you here. egyptian gods and
-    remnants of the dead will try to stop you. DON''T LET THEM.
+    you do not belong here. you must climb to the top and
+    escape the great pyramid, which has been reconstructed into a maze to trap you
+    here. egyptian gods and remnants of the dead will try to stop you. DON''T LET
+    THEM.
 
 
     Controls:
 
-    arrow
-    keys for movement | space bar for jumping'
+    arrow keys for movement | space bar for jumping'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
