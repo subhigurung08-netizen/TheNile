@@ -252,6 +252,7 @@ public class NPCController : MonoBehaviour
         Vector3 scaleChange = new Vector3(.2f, 4f, 2f);
         transform.localScale = scaleChange;
         Destroy(target, 1f);
+        SceneManager.LoadScene(2);
         // Application.Quit();
     } 
     

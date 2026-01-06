@@ -2,21 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class Menu : MonoBehaviour
+public class MenuAndSpawner : MonoBehaviour
 {
-    public GameObject[] spawned;
+    [SerializeField] private GameObject spawned;
+    [SerializeField] private Vector3 positionSpawned;
 
     // Called when we click the "Play" button.
     public void OnPlayButton()
     {
         SceneManager.LoadScene(1);
-        for(int i=0; i<spawned.Length; i++)
-        {
-        Vector3 positionSpawned = new Vector3(0, 0, 0);
-        Instantiate(spawned[i], positionSpawned, Quaternion.identity);
-        }
+        StartCoroutine(Spawn());
+        
+        
     }
 
+    IEnumerator Spawn()
+    {
+        yield return new WaitForSeconds(2f);
+        Instantiate(spawned, positionSpawned, Quaternion.identity);
+    }
     // void PlaySpawn()
     // {
         

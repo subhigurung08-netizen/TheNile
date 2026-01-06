@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HybridNPCController : MonoBehaviour
 {
-    public Transform player;
-    public float moveSpeed = 3f;
-    public float detectionDistance = 15f;
-    public LayerMask ground;
+    [SerializeField] private Transform player;
+    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float detectionDistance = 15f;
+    [SerializeField] private LayerMask ground;
+    [SerializeField] private GameObject target;
 
     // (main / high level states)
-    public enum NPCState
+    [SerializeField] private enum NPCState
+
+    
     {
         Roam,
         Chase
@@ -193,5 +197,14 @@ public class HybridNPCController : MonoBehaviour
         }
 
         transform.position += moveDir * moveSpeed * Time.deltaTime;
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            Destroy(target, 1f);
+            SceneManager.LoadScene(2);
+        }
     }
 }

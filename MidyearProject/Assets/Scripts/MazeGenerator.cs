@@ -63,7 +63,7 @@ public class MazeGenerator : MonoBehaviour
                 
             }
         }
-        StartCoroutine(Generate(entryStairsX, entryStairsZ));
+        StartCoroutine(Generate(entryStairsX + floorNumber, entryStairsZ + floorNumber));
         // if(floorNumber == 0)
         // {
         //     GetComponent<NavMeshSurface>().BuildNavMesh();
