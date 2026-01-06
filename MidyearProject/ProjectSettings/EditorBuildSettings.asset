@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DenialIsARiverInEgypt.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Game Over Menu.unity
+    guid: 38901656ecc478a49804fe0e7583ebe0
+  - enabled: 1
+    path: Assets/Scenes/Win Menu.unity
+    guid: c35ba35fe9f14b94a97c7cbec17e9a48
   m_configObjects: {}
