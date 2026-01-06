@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.AI.Navigation;  
 
 public class MazeGenerator : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class MazeGenerator : MonoBehaviour
 
     [SerializeField] private int exitStairsX;
     [SerializeField] private int exitStairsZ;
+
 
 
     // Start is called before the first frame update
@@ -61,7 +63,11 @@ public class MazeGenerator : MonoBehaviour
                 
             }
         }
-        StartCoroutine(Generate(entryStairsX + floorNumber, entryStairsZ + floorNumber));
+        StartCoroutine(Generate(entryStairsX, entryStairsZ));
+        // if(floorNumber == 0)
+        // {
+        //     GetComponent<NavMeshSurface>().BuildNavMesh();
+        // }
     }
     
     void CreateWall(int row, int col)
@@ -127,6 +133,10 @@ public class MazeGenerator : MonoBehaviour
         {
             // goal.transform.position = new Vector3(x * cellSize, 0, z * cellSize);
             Debug.Log("sup");
+            if(floorNumber == 0)
+            {
+                GetComponent<NavMeshSurface>().BuildNavMesh();
+            }
             yield break;
         }
         List<Vector2Int> neighbor = NeighborCheck(x, z);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class NPCController : MonoBehaviour
@@ -251,6 +252,7 @@ public class NPCController : MonoBehaviour
         Vector3 scaleChange = new Vector3(.2f, 4f, 2f);
         transform.localScale = scaleChange;
         Destroy(target, 1f);
+        // Application.Quit();
     } 
     
 
