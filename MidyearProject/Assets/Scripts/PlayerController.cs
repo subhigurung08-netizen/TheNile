@@ -17,8 +17,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform transformFeet;
     [SerializeField] private Transform camera; 
     [SerializeField] private Rigidbody rb;
-
-    [SerializeField] private Transform player;
     [SerializeField] private float speed;
     [SerializeField] private float sensitivity;
     [SerializeField] private float jumpForce;

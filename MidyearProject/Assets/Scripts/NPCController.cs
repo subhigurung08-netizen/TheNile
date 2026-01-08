@@ -9,8 +9,8 @@ public class NPCController : MonoBehaviour
     private List<string> states;
     [SerializeField] private float roamSpeed;
     [SerializeField] private float chaseSpeed;
-    [SerializeField] private Transform player;
-    [SerializeField] private GameObject target;
+    public Transform player;
+    public GameObject target;
     private bool isCaptured = false;
     [SerializeField] private float detectionDistance = 20f;
     [SerializeField] private float minX;
@@ -66,7 +66,7 @@ public class NPCController : MonoBehaviour
             {
                 Ray ray = new Ray(transform.position, directionToPlayer.normalized);
                 RaycastHit hit;
-                bool playerInSight = false;
+                // bool playerInSight = false;
 
                 if(transform.localScale == new Vector3(.2f, 3f, 2f))
                 {
@@ -111,11 +111,11 @@ public class NPCController : MonoBehaviour
                 if(player!=null && target != null)
                 {
                     
-                    if (Physics.Raycast(ray, out hit, detectionDistance) && Mathf.Abs(player.transform.position.y - transform.position.y) < 1f)
+                    if (Physics.Raycast(ray, out hit, detectionDistance) && hit.transform == player && Mathf.Abs(player.transform.position.y - transform.position.y) < 1f)
                     {
                         countRoam = 0;
-                        if (hit.transform == player)
-                        {   
+                        // if (hit.transform == player)
+                        // {   
 
                         // playerInSight = true;
                     
@@ -124,7 +124,7 @@ public class NPCController : MonoBehaviour
                                 Enchantment();
                             }
                             Chase(directionToPlayer);
-                        }
+                        // }
                     }
                 
                     else

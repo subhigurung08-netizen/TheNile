@@ -25,8 +25,9 @@ public class Spawner : MonoBehaviour
     void Update()
     {
 
-        if(player.transform.position.y > 1.5 &&  player.transform.position.y < 2.5 && firstFloorCount == 0)
+        if(player.transform.position.y > 1.5 &&  player.transform.position.y < 2.5 && groundFloorCount == 0)
         {
+            groundFloorCount++;
             StartCoroutine(Spawn(0));
         }
 

@@ -14,7 +14,7 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] private float wallHeight; 
     [SerializeField] private float cellSize; 
     [SerializeField] private List<GameObject> walls;
-    [SerializeField] private GameObject wall;
+    [SerializeField] private List<GameObject> wallPrefabs;
     [SerializeField] private GameObject floor;
     [SerializeField] private  bool [,] visited;
     // [SerializeField] private Stack<int> visitedX = new Stack<int>();
@@ -75,7 +75,8 @@ public class MazeGenerator : MonoBehaviour
         if(col!=0)
         {
             Vector3 positionNS = new Vector3(cellSize*  (baseWidth - width)/2 + row*cellSize + cellSize/2, 0, cellSize * (baseHeight - height)/2 + col*cellSize);
-            GameObject cube1 = Instantiate(wall, positionNS, Quaternion.identity);
+            int wallIndex1 = Random.Range(0, wallPrefabs.Count);
+            GameObject cube1 = Instantiate(wallPrefabs[wallIndex1], positionNS, Quaternion.identity);
             // cube1.transform.position = positionNS;
             Vector3 sizeChange1 = new Vector3(.2f, wallHeight, cellSize);
             cube1.transform.localScale = sizeChange1;
@@ -90,16 +91,20 @@ public class MazeGenerator : MonoBehaviour
             Vector3 positionWE = new Vector3(cellSize * (baseWidth - width)/2 + row * cellSize, 0, cellSize * (baseHeight - height)/2 + col*cellSize + cellSize/2);
             // put a code here to pick wall randomly from an list of different wall prefabs
             // wall = some random stuff
-            GameObject cube2 = Instantiate(wall, positionWE, Quaternion.identity);
+            if(wallPrefabs.Count > 0)
+            {
+                int wallIndex2 = Random.Range(0, wallPrefabs.Count);
+                GameObject cube2 = Instantiate(wallPrefabs[wallIndex2], positionWE, Quaternion.identity);
             // GameObject cube2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
             // Vector3 positionWE = new Vector3(row, 0, col + .5f);
             // cube2.transform.position = positionWE;
             // Vector3 sizeChange2 = new Vector3(1f, wallHeight, .2f);
-            Vector3 sizeChange2 = new Vector3(cellSize, wallHeight, .2f);
-            cube2.transform.localScale = sizeChange2;
-            Vector3 changePosition2 = new Vector3(cube2.transform.position.x, cube2.transform.position.y + wallHeight * floorNumber + wallHeight/2, cube2.transform.position.z);
-            cube2.transform.position = changePosition2;
-            walls.Add(cube2);
+                Vector3 sizeChange2 = new Vector3(cellSize, wallHeight, .2f);
+                cube2.transform.localScale = sizeChange2;
+                Vector3 changePosition2 = new Vector3(cube2.transform.position.x, cube2.transform.position.y + wallHeight * floorNumber + wallHeight/2, cube2.transform.position.z);
+                cube2.transform.position = changePosition2;
+                walls.Add(cube2);
+            }
         }
         // if(row == entryStairsX && col == entryStairsZ && floorNumber!=0)
         // {
