@@ -630,7 +630,7 @@ MonoBehaviour:
   transformFeet: {fileID: 1552724440}
   camera: {fileID: 963194228}
   rb: {fileID: 656483114}
-  speed: 2
+  speed: 12
   sensitivity: 3
   jumpForce: 10
 --- !u!136 &656483116
