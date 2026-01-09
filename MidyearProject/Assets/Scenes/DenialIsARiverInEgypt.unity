@@ -122,6 +122,23 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &100938981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1037566001970802088, guid: 9e7d76c9f089f45e8814e206a111dd79, type: 3}
+  m_PrefabInstance: {fileID: 1002994108685006309}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &100938986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100938981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff2e839c5ce8489482be864dd8d49c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &268438638
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +597,7 @@ GameObject:
   - component: {fileID: 656483114}
   m_Layer: 0
   m_Name: DefaultPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -632,7 +649,7 @@ MonoBehaviour:
   rb: {fileID: 656483114}
   speed: 12
   sensitivity: 3
-  jumpForce: 10
+  jumpForce: 18
 --- !u!136 &656483116
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1718,7 +1735,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1037566001970802088, guid: 9e7d76c9f089f45e8814e206a111dd79, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 100938986}
   m_SourcePrefab: {fileID: 100100000, guid: 9e7d76c9f089f45e8814e206a111dd79, type: 3}
 --- !u!23 &2068521295755932886
 MeshRenderer:
