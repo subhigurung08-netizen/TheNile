@@ -21,6 +21,10 @@ public class NPCController : MonoBehaviour
 
     [SerializeField] private LayerMask ground;
     [SerializeField] private int enchantmentTime;
+    [SerializeField] private AudioSource medjedMusic;
+    [SerializeField] private AudioSource backgroundMusic;
+    private bool isMedjedPlaying;
+    private bool isBackgroundPlaying;
 
     private float countRoam = 0f;
     
@@ -32,8 +36,11 @@ public class NPCController : MonoBehaviour
  
     void Start()
     {
-        // PlayerActionsX = new List<Vector2Int>();
-        // PlayerActionsZ = new List<Vector2Int>();
+        medjedMusic = GetComponent<AudioSource>();
+        backgroundMusic = GetComponent<AudioSource>();
+        backgroundMusic.Play();
+        isMedjedPlaying = false;
+        isBackgroundPlaying= true;
         
     }
 
@@ -42,7 +49,26 @@ public class NPCController : MonoBehaviour
     void Update()
     {
         
+        if(isMedjedPlaying)
+        {
+            medjedMusic.Play();
+                
+        }
+        else
+        {
+            medjedMusic.Stop();
+        }
         
+        if(!isBackgroundPlaying)
+        {
+            backgroundMusic.Pause();
+        }
+
+        else
+        {
+            backgroundMusic.UnPause();
+        }
+
         if(player !=null && target != null)
         {
             
@@ -119,10 +145,11 @@ public class NPCController : MonoBehaviour
 
                         // playerInSight = true;
                     
-                            if(hit.distance < 2f)
-                            {
-                                Enchantment();
-                            }
+                       
+                        if(hit.distance < 2f)
+                        {
+                            Enchantment();
+                        }
                             Chase(directionToPlayer);
                         // }
                     }
@@ -150,7 +177,8 @@ public class NPCController : MonoBehaviour
 
         void Roam(Vector3 dir)
         {
-            
+            isMedjedPlaying = false;
+            isBackgroundPlaying = true;
             if(!isCaptured)
             {
                 
@@ -183,6 +211,8 @@ public class NPCController : MonoBehaviour
         
         void Chase(Vector3 dir)
         {
+            isMedjedPlaying = true;
+            isBackgroundPlaying = false;
             if(!isCaptured)
             {
                 Debug.Log("State: Chase");
@@ -222,7 +252,8 @@ public class NPCController : MonoBehaviour
     
     void Enchantment()
     {
-        
+        isMedjedPlaying = true;
+        isBackgroundPlaying = false;
         if(!isCaptured)
         {
       
@@ -245,6 +276,8 @@ public class NPCController : MonoBehaviour
 
     void Capture()
     {
+        isMedjedPlaying = true;
+        isBackgroundPlaying = false;
         isCaptured = true;
         Debug.Log("State: Capture");
         

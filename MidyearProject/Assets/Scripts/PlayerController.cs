@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 movementInput;
     private Vector2 mouseInput;
-
     private float rotationX;
 
 
