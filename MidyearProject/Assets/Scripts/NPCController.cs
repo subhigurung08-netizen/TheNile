@@ -21,8 +21,8 @@ public class NPCController : MonoBehaviour
 
     [SerializeField] private LayerMask ground;
     [SerializeField] private int enchantmentTime;
-    [SerializeField] private AudioSource medjedMusic;
-    [SerializeField] private AudioSource backgroundMusic;
+    // [SerializeField] private AudioSource medjedMusic;
+    // [SerializeField] private AudioSource backgroundMusic;
     private bool isMedjedPlaying;
     private bool isBackgroundPlaying;
 
@@ -36,9 +36,9 @@ public class NPCController : MonoBehaviour
  
     void Start()
     {
-        medjedMusic = GetComponent<AudioSource>();
-        backgroundMusic = GetComponent<AudioSource>();
-        backgroundMusic.Play();
+        // medjedMusic = GetComponent<AudioSource>();
+        // backgroundMusic = GetComponent<AudioSource>();
+        // backgroundMusic.Play();
         isMedjedPlaying = false;
         isBackgroundPlaying= true;
         
@@ -49,25 +49,25 @@ public class NPCController : MonoBehaviour
     void Update()
     {
         
-        if(isMedjedPlaying)
-        {
-            medjedMusic.Play();
+        // if(isMedjedPlaying)
+        // {
+        //     medjedMusic.Play();
                 
-        }
-        else
-        {
-            medjedMusic.Stop();
-        }
+        // }
+        // else
+        // {
+        //     medjedMusic.Stop();
+        // }
         
-        if(!isBackgroundPlaying)
-        {
-            backgroundMusic.Pause();
-        }
+        // if(!isBackgroundPlaying)
+        // {
+        //     backgroundMusic.Pause();
+        // }
 
-        else
-        {
-            backgroundMusic.UnPause();
-        }
+        // else
+        // {
+        //     backgroundMusic.UnPause();
+        // }
 
         if(player !=null && target != null)
         {
