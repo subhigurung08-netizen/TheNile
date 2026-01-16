@@ -74,15 +74,18 @@ public class MazeGenerator : MonoBehaviour
     {
         if(col!=0)
         {
-            Vector3 positionNS = new Vector3(cellSize*  (baseWidth - width)/2 + row*cellSize + cellSize/2, 0, cellSize * (baseHeight - height)/2 + col*cellSize);
-            int wallIndex1 = Random.Range(0, wallPrefabs.Count);
-            GameObject cube1 = Instantiate(wallPrefabs[wallIndex1], positionNS, Quaternion.identity);
-            // cube1.transform.position = positionNS;
-            Vector3 sizeChange1 = new Vector3(.2f, wallHeight, cellSize);
-            cube1.transform.localScale = sizeChange1;
-            Vector3 changePosition1 = new Vector3(cube1.transform.position.x, cube1.transform.position.y+ wallHeight * floorNumber + wallHeight/2, cube1.transform.position.z);
-            cube1.transform.position = changePosition1;
-            walls.Add(cube1);
+            if(wallPrefabs.Count > 0)
+            {
+                Vector3 positionNS = new Vector3(cellSize*  (baseWidth - width)/2 + row*cellSize + cellSize/2, 0, cellSize * (baseHeight - height)/2 + col*cellSize);
+                int wallIndex1 = Random.Range(0, wallPrefabs.Count);
+                GameObject cube1 = Instantiate(wallPrefabs[wallIndex1], positionNS, Quaternion.identity);
+                // cube1.transform.position = positionNS;
+                Vector3 sizeChange1 = new Vector3(.2f, wallHeight, cellSize);
+                cube1.transform.localScale = sizeChange1;
+                Vector3 changePosition1 = new Vector3(cube1.transform.position.x, cube1.transform.position.y+ wallHeight * floorNumber + wallHeight/2, cube1.transform.position.z);
+                cube1.transform.position = changePosition1;
+                walls.Add(cube1);
+            }
         }
 
         if(row!=0)
@@ -95,10 +98,10 @@ public class MazeGenerator : MonoBehaviour
             {
                 int wallIndex2 = Random.Range(0, wallPrefabs.Count);
                 GameObject cube2 = Instantiate(wallPrefabs[wallIndex2], positionWE, Quaternion.identity);
-            // GameObject cube2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            // Vector3 positionWE = new Vector3(row, 0, col + .5f);
-            // cube2.transform.position = positionWE;
-            // Vector3 sizeChange2 = new Vector3(1f, wallHeight, .2f);
+                // GameObject cube2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                // Vector3 positionWE = new Vector3(row, 0, col + .5f);
+                // cube2.transform.position = positionWE;
+                // Vector3 sizeChange2 = new Vector3(1f, wallHeight, .2f);
                 Vector3 sizeChange2 = new Vector3(cellSize, wallHeight, .2f);
                 cube2.transform.localScale = sizeChange2;
                 Vector3 changePosition2 = new Vector3(cube2.transform.position.x, cube2.transform.position.y + wallHeight * floorNumber + wallHeight/2, cube2.transform.position.z);

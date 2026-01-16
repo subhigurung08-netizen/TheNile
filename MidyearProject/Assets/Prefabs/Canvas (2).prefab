@@ -1082,14 +1082,15 @@ MonoBehaviour:
 
     you do not belong here. you must escape the great pyramid,
     which has been reconstructed into a maze to trap you here. find the colored tiles
-    to move on to to the next floors where more mazes await. egyptian gods and remnants
-    of the dead will try to stop you. DON''T LET THEM.
+    to move on to to the next floors until you find the distinct WALL OF LIBERATION
+    on the top floor. egyptian gods and remnants of the dead will try to stop you.
+    DON''T LET THEM.
 
 
     Controls:
 
-    arrow
-    keys for movement | space bar for jumping (only works on colored tiles)'
+    arrow keys for movement | space bar for
+    jumping (only works on colored tiles)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
