@@ -483,7 +483,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 10
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -811,7 +811,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 769f4c2ce55db4e54a5dd1b441e062cd, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 04b2e52cbaff14b1fa079866c79a170c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.519
   m_Pitch: 1
@@ -1539,15 +1539,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8654d5fdd6e6587429dad866927e84a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 20.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8654d5fdd6e6587429dad866927e84a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21
+      value: 10.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8654d5fdd6e6587429dad866927e84a4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 16.71
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8654d5fdd6e6587429dad866927e84a4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2731,15 +2731,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db12255d5016e7043a51418d22dfbf2f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 21.51
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db12255d5016e7043a51418d22dfbf2f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21
+      value: 20.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db12255d5016e7043a51418d22dfbf2f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 12.82
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db12255d5016e7043a51418d22dfbf2f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3852,7 +3852,7 @@ MonoBehaviour:
   minZ: 4
   maxX: 91
   maxZ: 91
-  positionY: 12.05
+  positionY: 10.15
   ground:
     serializedVersion: 2
     m_Bits: 64
@@ -3878,7 +3878,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 10
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0

@@ -94,7 +94,7 @@ public class NPCController : MonoBehaviour
                 RaycastHit hit;
                 // bool playerInSight = false;
 
-                if(transform.localScale == new Vector3(.2f, 3f, 2f))
+                if(transform.localScale == new Vector3(.002f, .03f, .02f))
                 {
                     enchantmentTime++;
                 // switch(directionToPlayer.normalized.x)
@@ -184,7 +184,7 @@ public class NPCController : MonoBehaviour
                 
                 Debug.Log("State: Roam");
             
-                transform.localScale = new Vector3(2f, 2f, 2f);
+                transform.localScale = new Vector3(.02f, .02f, .02f);
                 if(countRoam>100)
                 {
                     countRoam=0;
@@ -216,7 +216,7 @@ public class NPCController : MonoBehaviour
             if(!isCaptured)
             {
                 Debug.Log("State: Chase");
-                transform.localScale = new Vector3(3f, 2f, 2f);
+                transform.localScale = new Vector3(.03f, .02f, .02f);
             // Vector3 dir = player.transform.position - transform.position;
                 dir.y = 0f;
                 if(dir.magnitude < 10f)
@@ -261,7 +261,7 @@ public class NPCController : MonoBehaviour
         
             if(transform.localScale.x == 3f)
             {
-                Vector3 scaleChange = new Vector3(.2f, 3f, 2f);
+                Vector3 scaleChange = new Vector3(.002f, .03f, .02f);
                 transform.localScale = scaleChange;
             }
         // }
