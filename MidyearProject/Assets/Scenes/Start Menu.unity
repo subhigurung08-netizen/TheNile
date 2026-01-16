@@ -1132,7 +1132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -116}
+  m_AnchoredPosition: {x: 0, y: -140}
   m_SizeDelta: {x: 200, y: 63.189}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &984387837
@@ -1925,15 +1925,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Objective:
 
-    you do not belong here. you must climb to the top and
-    escape the great pyramid, which has been reconstructed into a maze to trap you
-    here. egyptian gods and remnants of the dead will try to stop you. DON''T LET
-    THEM.
+    you do not belong here. you must escape the great pyramid,
+    which has been reconstructed into a maze to trap you here. find the colored tiles
+    to move on to to the next floors where more mazes await. egyptian gods and remnants
+    of the dead will try to stop you. DON''T LET THEM.
 
 
     Controls:
 
-    arrow keys for movement | space bar for jumping'
+    arrow
+    keys for movement | space bar for jumping (only works on colored tiles)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
